@@ -37,7 +37,7 @@ def getHistoricalData(ticker):
 
     for timeandprice in aggs['results']:
         f.writerow([
-            timeandprice['t'],
+            datetime.datetime.fromtimestamp(timeandprice['t']/1000.0),
             timeandprice['c']])
 
 
