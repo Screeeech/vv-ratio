@@ -6,6 +6,9 @@ from polygon import RESTClient
 from typing import cast
 from urllib3 import HTTPResponse
 import datetime
+import json
+import ast
+
 
 
 
@@ -25,6 +28,10 @@ def getHistoricalData(ticker):
             raw=True,
         ),
     )
+
+    data = pd.DataFrame(aggs)
+
+
 
     return aggs.data
 

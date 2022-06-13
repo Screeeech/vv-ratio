@@ -30,4 +30,14 @@ dependencies:
   - vs2015_runtime=14.27.29016=h5e58377_2
   - wheel=0.37.1=pyhd3eb1b0_0
   - wincertstore=0.2=py39haa95532_2
-prefix: C:\Users\hasit\anaconda3\envs\vv-ratio
+  - pip:
+    - charset-normalizer==2.0.12
+    - idna==3.3
+    - inflection==0.5.1
+    - more-itertools==8.13.0
+    - nasdaq-data-link==1.0.2
+    - polygon-api-client==1.0.2
+    - requests==2.28.0
+    - urllib3==1.26.9
+    - websockets==10.3
+prefix: C:\Users\umalv\anaconda3\envs\vv-ratio
