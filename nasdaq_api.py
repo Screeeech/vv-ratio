@@ -7,7 +7,8 @@ from typing import cast
 from urllib3 import HTTPResponse
 import datetime
 import json
-import ast
+import csv
+
 
 
 
@@ -28,18 +29,24 @@ def getHistoricalData(ticker):
             raw=True,
         ),
     )
+    stringaggs = aggs.data.decode('utf8'.replace("''", '""'))
+    aggs = json.loads(stringaggs)
+    f = csv.writer(open(ticker + "_historical_closing_prices.csv", "w"))
 
-    data = pd.DataFrame(aggs)
+    f.writerow(["timestamp", "close"])
+
+    for timeandprice in aggs['results']:
+        f.writerow([
+            timeandprice['t'],
+            timeandprice['c']])
 
 
-
-    return aggs.data
 
 
 
 
 if __name__ == '__main__':
-    print(getHistoricalData("AAPL"))
+    getHistoricalData("AAPL")
 
 
 
