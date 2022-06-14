@@ -12,16 +12,16 @@ def get_historical_data(ticker):
 
     year_ago = datetime.date.today() - datetime.timedelta(days=365)
     aggs = json.loads(cast(
-                HTTPResponse,
-                client.get_aggs(
-                    ticker,
-                    1,
-                    "day",
-                    year_ago.strftime("%Y-%m-%d"),
-                    datetime.date.today().strftime("%Y-%m-%d"),
-                    raw=True,
-                ),
-            ).data.decode('utf8'.replace("''", '""')))
+        HTTPResponse,
+        client.get_aggs(
+            ticker,
+            1,
+            "day",
+            year_ago.strftime("%Y-%m-%d"),
+            datetime.date.today().strftime("%Y-%m-%d"),
+            raw=True,
+        ),
+    ).data.decode('utf8'.replace("''", '""')))
 
     f = csv.writer(open(ticker + "_historical_closing_prices.csv", "w", newline=''))
     f.writerow(["timestamp", "close"])
@@ -30,6 +30,7 @@ def get_historical_data(ticker):
         f.writerow([
             datetime.datetime.utcfromtimestamp(i['t'] / 1000.0),
             i['c']])
+
 
 if __name__ == '__main__':
     get_historical_data("AAPL")
