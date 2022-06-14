@@ -23,10 +23,13 @@ def get_historical_data(ticker):
                 ),
             ).data.decode('utf8'.replace("''", '""')))
 
-    f = csv.writer(open("S&P500 Prices/" + ticker + "_historical_closing_prices.csv", "w", newline=''))
+    f = csv.writer(open(ticker + "_historical_closing_prices.csv", "w", newline=''))
     f.writerow(["timestamp", "close"])
 
     for i in aggs['results']:
         f.writerow([
-            datetime.datetime.fromtimestamp(i['t'] / 1000.0),
+            datetime.datetime.utcfromtimestamp(i['t'] / 1000.0),
             i['c']])
+
+if __name__ == '__main__':
+    get_historical_data("AAPL")
