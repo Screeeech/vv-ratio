@@ -20,10 +20,10 @@ def get_moving_avg_r2(ticker):
     for i in range(math.floor(df.shape[0] / period)):
         slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(df.index[i * period:(i + 1) * period],
                                                                              df["close"][i * period:(i + 1) * period])
-        graph(lambda x: slope * x + intercept, range(i * period, (i + 1)*period))
+        # graph(lambda x: slope * x + intercept, range(i * period, (i + 1)*period))
         avg_r2 += (r_value ** 2) / (math.floor(df.shape[0] / period))
 
-    plt.show()
+    # plt.show()
     print(avg_r2)
 
 
