@@ -6,6 +6,8 @@ import json
 import csv
 
 
+
+
 def get_historical_data(ticker):
     print("getting data for " + ticker)
     client = RESTClient("9P7ogpJgyLF1lauT17eqrTAL7YiKriH0")  # api_key is used
@@ -33,4 +35,4 @@ def get_historical_data(ticker):
 
 
 if __name__ == '__main__':
-    get_historical_data("AAPL")
+    create

@@ -14,5 +14,3 @@ def create_r_squared_list():
             ma.get_moving_avg_r2(symbol)])
 
 
-if __name__ == '__main__':
-    create_r_squared_list()
