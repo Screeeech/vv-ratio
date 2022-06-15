@@ -32,7 +32,7 @@ def get_moving_avg_r2(ticker):
     """
     def best_fit(x):
         return x * slope + intercept
-    """
+        
 
     def best_fit_a(x):
         return x * slope_a + intercept_a
@@ -42,6 +42,7 @@ def get_moving_avg_r2(ticker):
         y = formula(x)
         plt.plot(x, y, color="orange")
 
+    
     plt.subplot(3, 1, 1)
     plt.scatter(avg_df.index, avg_df["moving_average"])
     graph(lambda x: best_fit_a(x), range(0, avg_df.shape[0]))
@@ -49,7 +50,7 @@ def get_moving_avg_r2(ticker):
     plt.subplot(3, 1, 2)
     plt.scatter(df.index, df["close"])
 
-    """
+    
     plt.subplot(3, 1, 3)
     plt.scatter(slope_df.index, slope_df["slope"])
     graph(lambda x: best_fit(x), range(0, df.shape[0]))
