@@ -24,7 +24,7 @@ def get_moving_avg_r2(ticker):
         avg_r2 += (r_value ** 2) / (math.floor(df.shape[0] / period))
 
     # plt.show()
-    print(avg_r2)
+    # print(avg_r2)
 
 
-get_moving_avg_r2("AAPL")
+# get_moving_avg_r2("AAPL")
