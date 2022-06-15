@@ -1,20 +1,34 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
-df = pd.read_csv("AAPL_historical_closing_prices.csv", sep="\t", encoding='utf-8')
-avg_df = pd.DataFrame(columns=["timestamp", "moving_average"])
+ticker = "AAPL"
+df = pd.read_csv(ticker + "_historical_closing_prices.csv", sep="\t", encoding='utf-8')
+avg_df = pd.DataFrame(columns=["moving_average"])
 
-
-t = 20
-for count, value in df["close"].iteritems():
-    if count == len(df["close"])-t:
-        break
-
+period = 20
+for i in range(math.floor(df.shape[0]/period)):
     avg = 0
-    for i in range(t):
-        avg += df["close"][count+i]/t
+    for j in range(period):
+        avg += df["close"][i*period + j]/period
 
-    avg_df.loc[count] = [df["timestamp"][count], avg]
+    avg_df.loc[i] = [avg]
 
-plt.scatter(avg_df["timestamp"], avg_df["moving_average"])
+
+slope_period = 1
+slope_df = pd.DataFrame(columns=["slope"])
+for i in range(1, df.shape[0]-1):
+    m = df["close"][i+1] - df["close"][i-1]
+    m /= 3
+    slope_df.loc[i] = [m]
+
+
+plt.subplot(3, 1, 1)
+plt.scatter(avg_df.index, avg_df["moving_average"])
+plt.subplot(3, 1, 2)
+plt.scatter(df.index, df["close"])
+plt.subplot(3, 1, 3)
+plt.scatter(slope_df.index, slope_df["slope"])
 plt.show()
+
+
