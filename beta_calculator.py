@@ -12,7 +12,7 @@ def roi_from_start(values):
     return (values - values[0]) / values[0]
 
 
-def get_beta(ticker):
+def get_beta_and_alpha(ticker):
     ticker_df = pd.read_csv("S&P500 Prices/" + ticker + "_historical_closing_prices.csv", sep="\t", encoding="utf-8", index_col=0)
     sp500_df = pd.read_csv("S&P500-index.csv", encoding="utf-8")
 
@@ -30,6 +30,8 @@ def get_beta(ticker):
     plt.show()
     """
 
-    return slope
+    return (slope, intercept)
+
+
 
 
