@@ -7,7 +7,7 @@ import math
 
 def get_moving_avg_r2(ticker):
     df = pd.read_csv("S&P500 Prices/" + ticker + "_historical_closing_prices.csv", sep="\t", encoding='utf-8')
-    plt.scatter(df.index, df["close"])
+    #plt.scatter(df.index, df["close"])
     r2_df = pd.DataFrame(columns=["moving_average"])
 
     def graph(formula, x_range):
@@ -24,7 +24,7 @@ def get_moving_avg_r2(ticker):
         avg_r2 += (r_value ** 2) / (math.floor(df.shape[0] / period))
 
     # plt.show()
-    # print(avg_r2)
+    return avg_r2
 
 
 # get_moving_avg_r2("AAPL")
