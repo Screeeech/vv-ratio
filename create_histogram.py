@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import moving_lobf_residual as lobfr
 import csv
+import beta_calculator
 
 
 def histogram():
@@ -28,14 +29,14 @@ def histogram_moving_lobf():
     plt.hist(x)
     plt.show()
 
-    f = csv.writer(open("S&P500_moving_lobf_residuals.csv", "w", newline=''))
-    f.writerow(["ticker", "lobf residual"])
+    f = csv.writer(open("beta_values.csv", "w", newline=''))
+    f.writerow(["ticker", "beta"])
 
     for ticker in df["ticker"]:
 
         f.writerow([
             ticker,
-            lobfr.get_moving_avg_r2(ticker)
+            beta_calculator.get_beta(ticker)
         ])
 
 
