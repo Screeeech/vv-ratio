@@ -7,16 +7,19 @@ import beta_calculator as bc
 def create_r_squared_list():
     df = pd.read_csv("constituents.csv")
     f = csv.writer(open("S&P500 ratios.csv", "w", newline=''))
-    f.writerow(["ticker", "avg vv-ratio", "avg slope", "avg r2", "beta", "alpha"])
+    f.writerow(["ticker", "avg vv-ratio", "avg slope", "avg r2", "beta", "alpha", "beta r2"])
 
     for ticker in df["Symbol"]:
+        x = lobf.get_moving_avg_r2(ticker)
+        y = bc.get_beta_and_alpha(ticker)
         f.writerow([
             ticker,
-            lobf.get_moving_avg_r2(ticker)[0],
-            lobf.get_moving_avg_r2(ticker)[1],
-            lobf.get_moving_avg_r2(ticker)[2],
-            bc.get_beta_and_alpha(ticker)[0],
-            bc.get_beta_and_alpha(ticker)[1]])
+            x[0],
+            x[1],
+            x[2],
+            y[0],
+            y[1],
+            y[2]])
 
 
 if __name__ == '__main__':
