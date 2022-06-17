@@ -30,7 +30,7 @@ def get_beta_and_alpha(ticker):
     plt.show()
     """
 
-    return (slope, intercept)
+    return (slope, intercept, r_value**2)
 
 
 
