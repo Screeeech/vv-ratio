@@ -18,8 +18,6 @@ def get_moving_avg_r2(ticker):
     avg_slope = 0
     avg_vv = 0
 
-    weight = 1
-    avg_wr2 = 0
 
     df["ROI"] = roi_from_start(df["close"])
 
@@ -35,13 +33,13 @@ def get_moving_avg_r2(ticker):
         avg_vv += (slope / (r_value ** 2)) / (math.floor(df.shape[0] / period))
         avg_slope += slope / (math.floor(df.shape[0] / period))
         avg_r2 += (r_value**2) / (math.floor(df.shape[0] / period))
-        avg_wr2 = weight * (r_value**2) / (math.floor(df.shape[0] / period))
+
 
         weight += .5/math.floor(df.shape[0] / period)
         # print(r_value**2)
 
 
-    return avg_vv, avg_slope, avg_r2, avg_wr2
+    return avg_vv, avg_slope, avg_r2
 
 
 # get_moving_avg_r2("AAPL")
